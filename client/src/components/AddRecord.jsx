@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios'
 
 class AddRecord extends Component {
   constructor() {
@@ -8,9 +9,16 @@ class AddRecord extends Component {
         name: '',
         artist: '',
         year: ''
+      },
+      collection: {
+        id: '',
+        name: '',
+        numberOfRecords: '',
+        records: []
       }
     }
   }
+
   _handleChange = event => {
     const attributeName = event.target.name;
          const attributeValue = event.target.value;
@@ -20,6 +28,10 @@ class AddRecord extends Component {
 
          this.setState({ newRecord })
  };
+ _handleSubmit = event => {
+   event.stopPropogation()
+
+ }
   render () {
     return(
       <div>

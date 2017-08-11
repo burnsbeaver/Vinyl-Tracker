@@ -14,7 +14,6 @@ class Home extends Component {
   }
   _loginSubmit = (e) => {
     e.preventDefault()
-    console.log('works!')
 
     this.props.handleLogin(this.state.loginInfo.email, this.state.loginInfo.password)
         .then((redirect) => {

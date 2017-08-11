@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
 import User from "./components/User";
 import Home from "./components/Home";
@@ -21,7 +21,6 @@ class App extends Component {
     }
   }
   _handleLogin = (email, password) => {
-    console.log('Successful attempt for ' + email + password)
     return axios.post(`/api/user/login`, {email, password})
       .then((res) => {
         const newState = {...this.state}
@@ -34,9 +33,15 @@ class App extends Component {
         return true;
       })
   }
+  _handleAddRecord = () => {
+
+  }
   render() {
     const HomeComponent = () => (
       <Home handleLogin={this._handleLogin} userId={this.state.user.id}/>
+    )
+    const AddRecordComponent = () => (
+      <AddRecord handleAddRecord={this._handleAddRecord} />
     )
     return (
       <Router>
@@ -49,7 +54,7 @@ class App extends Component {
             <Route exact path="/" render={HomeComponent} />
             <Route exact path="/user/:userId" component={User} />
             <Route exact path="/user/:userId/:collectionId" component={ShowCollection} />
-            <Route exact path="/user/:userId/:collectionId/record/new" component={AddRecord} />
+            <Route exact path="/user/:userId/:collectionId/record/new" render={AddRecordComponent} />
           </div>
         </div>
       </Router>

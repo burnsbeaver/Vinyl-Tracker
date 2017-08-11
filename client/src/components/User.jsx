@@ -17,7 +17,6 @@ class User extends Component {
   }
 
   componentWillMount(){
-    console.log('mounting')
     const id = this.props.match.params.userId;
       axios.get(`/api/user/${id}`)
         .then((res) => {

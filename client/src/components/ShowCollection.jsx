@@ -13,6 +13,7 @@ class ShowCollection extends Component {
         numberOfRecords: '',
         records: []
       }
+      
     }
   }
   componentWillMount(){
@@ -39,7 +40,7 @@ class ShowCollection extends Component {
       <div>
         <h2>{this.state.collection.name}</h2>
         <h4>{this.state.collection.numberOfRecords} Records</h4>
-        <h6><Link to={`/user/${userId}/${collectionId}/record/new`}>Add Record</Link></h6>
+        <button onClick>Add New</button>
         <ul>
           {recordcomponent}
         </ul>
