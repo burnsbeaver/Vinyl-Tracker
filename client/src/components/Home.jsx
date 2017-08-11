@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
   constructor() {
@@ -7,7 +8,8 @@ class Home extends Component {
       loginInfo: {
         email: "",
         password: ""
-      }
+      },
+      redirect: false
     }
   }
   _loginSubmit = (e) => {
@@ -15,6 +17,11 @@ class Home extends Component {
     console.log('works!')
 
     this.props.handleLogin(this.state.loginInfo.email, this.state.loginInfo.password)
+        .then((redirect) => {
+          const newState = {...this.state}
+          newState.redirect = redirect
+          this.setState(newState)
+        })
   }
   _handleChange = event => {
     const attributeName = event.target.name;
@@ -26,6 +33,9 @@ class Home extends Component {
          this.setState({ loginInfo })
 }
   render () {
+    if (this.state.redirect) {
+      return <Redirect to={`/user/${this.props.userId}`} />;
+    } else {
     return(
       <div>
         <h3>Login</h3>
@@ -51,6 +61,7 @@ class Home extends Component {
       </div>
     )
   }
+}
 }
 
 export default Home;

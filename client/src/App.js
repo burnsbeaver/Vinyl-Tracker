@@ -17,13 +17,12 @@ class App extends Component {
         lastName: '',
         password: '',
         collections: []
-      },
-      redirect: false
+      }
     }
   }
   _handleLogin = (email, password) => {
     console.log('Successful attempt for ' + email + password)
-    axios.post(`/api/user/login`, {email, password})
+    return axios.post(`/api/user/login`, {email, password})
       .then((res) => {
         const newState = {...this.state}
         newState.user.id = res.data._id;
@@ -31,18 +30,14 @@ class App extends Component {
         newState.user.lastName = res.data.lastName;
         newState.user.password = res.data.password;
         newState.user.collections = res.data.collections
-        newState.redirect = true
         this.setState(newState)
-        console.log(this.state)
+        return true;
       })
   }
   render() {
     const HomeComponent = () => (
-      <Home handleLogin={this._handleLogin} />
+      <Home handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
-    if (this.state.redirect) {
-      return <Redirect to={`/user/${this.state.user.id}`} />;
-    } else {
     return (
       <Router>
         <div>
@@ -60,7 +55,6 @@ class App extends Component {
       </Router>
     );
   }
-}
 }
 
 export default App;
