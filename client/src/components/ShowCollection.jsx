@@ -13,7 +13,7 @@ class ShowCollection extends Component {
         numberOfRecords: '',
         records: []
       }
-      
+
     }
   }
   componentWillMount(){
@@ -32,6 +32,7 @@ class ShowCollection extends Component {
   render () {
     const userId = this.props.match.params.userId
     const collectionId = this.props.match.params.collectionId
+    console.log(collectionId)
     const recordState = this.state.collection.records;
     const recordcomponent = recordState.map((record, i) => {
       return <Record key={i} record={record}/>
