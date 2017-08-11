@@ -5,7 +5,8 @@ class Record extends Component {
     return (
       <div>
         <li>
-          {this.props.record.name}
+          <h5>{this.props.record.name}</h5>
+          <h6>By: {this.props.record.artist}</h6>
         </li>
       </div>
     )
