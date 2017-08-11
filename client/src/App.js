@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
+import axios from 'axios'
 import User from "./components/User";
 import Home from "./components/Home";
 import ShowCollection from "./components/ShowCollection";
@@ -16,16 +17,32 @@ class App extends Component {
         lastName: '',
         password: '',
         collections: []
-      }
+      },
+      redirect: false
     }
   }
   _handleLogin = (email, password) => {
     console.log('Successful attempt for ' + email + password)
+    axios.post(`/api/user/login`, {email, password})
+      .then((res) => {
+        const newState = {...this.state}
+        newState.user.id = res.data._id;
+        newState.user.firstName = res.data.firstName;
+        newState.user.lastName = res.data.lastName;
+        newState.user.password = res.data.password;
+        newState.user.collections = res.data.collections
+        newState.redirect = true
+        this.setState(newState)
+        console.log(this.state)
+      })
   }
   render() {
     const HomeComponent = () => (
       <Home handleLogin={this._handleLogin} />
     )
+    if (this.state.redirect) {
+      return <Redirect to={`/user/${this.state.user.id}`} />;
+    } else {
     return (
       <Router>
         <div>
@@ -43,6 +60,7 @@ class App extends Component {
       </Router>
     );
   }
+}
 }
 
 export default App;
