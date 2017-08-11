@@ -24,7 +24,7 @@ connection.on('error', (err) => {
 app.use(bodyParser.json());
 
 app.use('/api/user', UsersController);
-app.use('/api/user/:userId/', CollectionController)
+app.use('/api/user/:userId/collection', CollectionController)
 
 app.get('/', (req,res) => {
   res.send('Hello world!')
