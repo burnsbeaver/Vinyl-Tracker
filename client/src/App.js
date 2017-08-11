@@ -4,7 +4,6 @@ import axios from 'axios'
 import User from "./components/User";
 import Home from "./components/Home";
 import ShowCollection from "./components/ShowCollection";
-import AddRecord from "./components/AddRecord";
 
 class App extends Component {
   constructor() {
@@ -40,8 +39,8 @@ class App extends Component {
     const HomeComponent = () => (
       <Home handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
-    const AddRecordComponent = () => (
-      <AddRecord handleAddRecord={this._handleAddRecord} />
+    const ShowCollectionComponent = () => (
+      <ShowCollection handleAddRecord={this._handleAddRecord} />
     )
     return (
       <Router>
@@ -53,8 +52,7 @@ class App extends Component {
           <div>
             <Route exact path="/" render={HomeComponent} />
             <Route exact path="/user/:userId" component={User} />
-            <Route exact path="/user/:userId/:collectionId" component={ShowCollection} />
-            <Route exact path="/user/:userId/:collectionId/record/new" render={AddRecordComponent} />
+            <Route exact path="/user/:userId/:collectionId" render={ShowCollectionComponent} />
           </div>
         </div>
       </Router>

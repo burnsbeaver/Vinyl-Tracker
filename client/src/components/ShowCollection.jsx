@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Record from './Record'
+import AddRecord from './AddRecord';
+import Record from './Record';
 
 class ShowCollection extends Component {
   constructor(){
@@ -12,8 +12,8 @@ class ShowCollection extends Component {
         name: '',
         numberOfRecords: '',
         records: []
-      }
-
+      },
+      newRecord: false
     }
   }
   componentWillMount(){
@@ -26,27 +26,36 @@ class ShowCollection extends Component {
         newState.collection.numberOfRecords = res.data.numberOfRecords;
         newState.collection.records = res.data.records;
         this.setState(newState)
-        console.log(this.state.collection.records)
       })
   }
+  _handleAddNewRecord = () => {
+    const newState = {...this.state}
+    newState.newRecord = true
+    this.setState(newState)
+  }
   render () {
-    const userId = this.props.match.params.userId
     const collectionId = this.props.match.params.collectionId
-    console.log(collectionId)
     const recordState = this.state.collection.records;
     const recordcomponent = recordState.map((record, i) => {
-      return <Record key={i} record={record}/>
+      return <Record key={i} collectionId={collectionId} record={record}/>
     })
-    return(
-      <div>
-        <h2>{this.state.collection.name}</h2>
-        <h4>{this.state.collection.numberOfRecords} Records</h4>
-        <button onClick>Add New</button>
-        <ul>
-          {recordcomponent}
-        </ul>
-      </div>
-    )
+
+    if (this.state.newRecord) {
+      return (
+        <AddRecord collectionId={collectionId}/>
+      )
+    } else {
+      return (
+        <div>
+          <h2>{this.state.collection.name}</h2>
+          <h4>{this.state.collection.numberOfRecords} Records</h4>
+          <button onClick={this._handleAddNewRecord}>Add New Record</button>
+          <ul>
+            {recordcomponent}
+          </ul>
+        </div>
+      )
+    }
   }
 }
 
