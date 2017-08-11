@@ -44,6 +44,9 @@ class App extends Component {
     const ShowCollectionComponent = () => (
       <ShowCollection handleAddRecord={this._handleAddRecord} />
     )
+    const UserComponent = () => (
+      <User userId={this.state.user.id} />
+    )
     return (
       <Router>
         <div>
@@ -53,7 +56,7 @@ class App extends Component {
           </div>
           <div>
             <Route exact path="/" render={HomeComponent} />
-            <Route exact path="/user/:userId" component={User} />
+            <Route exact path="/user/:userId" render={UserComponent} />
             <Route exact path="/user/:userId/:collectionId" render={ShowCollectionComponent} />
           </div>
         </div>

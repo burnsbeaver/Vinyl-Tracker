@@ -22,7 +22,7 @@ class User extends Component {
   }
 
   componentWillMount(){
-    const id = this.props.match.params.userId;
+    const id = this.props.userId;
       axios.get(`/api/user/${id}`)
         .then((res) => {
           const newState = {...this.state}
@@ -36,7 +36,6 @@ class User extends Component {
   }
 
   _handleViewCollection = (collectionId) => {
-    console.log(collectionId)
     const newState = {...this.state}
     newState.viewCollection = true
     newState.collection.id = collectionId
@@ -53,6 +52,7 @@ class User extends Component {
     return(
       <div>
         <h3>Hello, {this.state.user.firstName}</h3>
+        {console.log(this.state)}
         <CollectionList handleViewCollection={this._handleViewCollection} user={this.state.user}/>
       </div>
     )
