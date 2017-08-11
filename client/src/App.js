@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import User from "./components/User";
-import Home from "./components/Home"
+import Home from "./components/Home";
+import ShowCollection from "./components/ShowCollection"
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
           </div>
           <div>
             <Route exact path="/" component={Home} />
-            <Route path="/user/:userId" component={User} />
+            <Route exact path="/user/:userId" component={User} />
+            <Route exact path="/user/:userId/:collectionId" component={ShowCollection} />
           </div>
         </div>
       </Router>
