@@ -3,12 +3,15 @@ import Collection from './Collection'
 
 class CollectionList extends Component {
   render () {
-    const collectioncomponent = this.props.collections.map((collection, i) => {
-      return <Collection key={i} collectionsState={this.props.collections} collection={collection}/>
+    const collectionState = this.props.user.collections
+    const collectioncomponent = collectionState.map((collection, i) => {
+      return <Collection key={i} user={this.props.user} collection={collection}/>
     })
+
+
     return(
       <div>
-        <h3>You have {this.props.collections.length} Collections</h3>
+        <h3>You have {collectionState.length} Collections</h3>
         <ul>
           {collectioncomponent}
         </ul>

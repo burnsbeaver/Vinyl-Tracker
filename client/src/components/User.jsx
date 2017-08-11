@@ -28,7 +28,6 @@ class User extends Component {
           newState.user.password = res.data.password;
           newState.user.collections = res.data.collections
           this.setState(newState)
-          console.log(this.state)
         })
   }
 
@@ -37,7 +36,7 @@ class User extends Component {
     return(
       <div>
         <h3>Hello, {this.state.user.firstName}</h3>
-        <CollectionList collections={this.state.user.collections}/>
+        <CollectionList user={this.state.user}/>
       </div>
     )
   }
