@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
 router.get("/:id", (req,res) => {
   console.log('user show path was hit!')
   User.findById(req.params.id).then((user) => {
+    console.log(user)
     res.json(user);
   });
 });

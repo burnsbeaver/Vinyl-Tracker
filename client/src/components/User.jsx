@@ -21,7 +21,6 @@ class User extends Component {
     const id = this.props.match.params.userId;
       axios.get(`/api/user/${id}`)
         .then((res) => {
-          console.log(res.data.collections)
           const newState = {...this.state}
           newState.user.id = res.data._id;
           newState.user.firstName = res.data.firstName;

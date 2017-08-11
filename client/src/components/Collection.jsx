@@ -15,9 +15,6 @@ class Collection extends Component {
     }
   }
 
-  componentWillMount() {
-
-  }
   render () {
     console.log(this.props.collection)
     return(
