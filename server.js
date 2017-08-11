@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UsersController = require('./controllers/user')
+const CollectionController = require('./controllers/collection')
 
 const app = express();
 
@@ -23,6 +24,7 @@ connection.on('error', (err) => {
 app.use(bodyParser.json());
 
 app.use('/api/user', UsersController);
+app.use('/api/user/:userId/', CollectionController)
 
 app.get('/', (req,res) => {
   res.send('Hello world!')
