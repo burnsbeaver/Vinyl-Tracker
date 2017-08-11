@@ -5,7 +5,7 @@ class CollectionList extends Component {
   render () {
     const collectionState = this.props.user.collections
     const collectioncomponent = collectionState.map((collection, i) => {
-      return <Collection key={i} user={this.props.user} collection={collection}/>
+      return <Collection key={i} user={this.props.user} handleViewCollection={this.props.handleViewCollection} collection={collection}/>
     })
 
 

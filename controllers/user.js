@@ -26,6 +26,7 @@ router.post("/login", (req, res) => {
       const userToSearch = users.find((user ) => {
       return user.email === userEmail
     })
+    console.log(userToSearch)
     res.json(userToSearch)
 })});
 

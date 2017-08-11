@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CollectionList from './CollectionList';
+import ShowCollection from './ShowCollection'
 
 class User extends Component {
   constructor() {
@@ -12,7 +13,11 @@ class User extends Component {
         lastName: '',
         password: '',
         collections: []
-      }
+      },
+      collection: {
+        id: '',
+      },
+      viewCollection: false
     }
   }
 
@@ -30,14 +35,28 @@ class User extends Component {
         })
   }
 
-  render () {
+  _handleViewCollection = (collectionId) => {
+    console.log(collectionId)
+    const newState = {...this.state}
+    newState.viewCollection = true
+    newState.collection.id = collectionId
+    this.setState(newState)
+  }
 
+  render () {
+    if(this.state.viewCollection) {
+      console.log('view Collection Switched to true')
+      return(
+          <ShowCollection collectionId={this.state.collection.id}/>
+        )
+    } else{
     return(
       <div>
         <h3>Hello, {this.state.user.firstName}</h3>
-        <CollectionList user={this.state.user}/>
+        <CollectionList handleViewCollection={this._handleViewCollection} user={this.state.user}/>
       </div>
     )
+  }
   }
 }
 

@@ -17,7 +17,7 @@ class ShowCollection extends Component {
     }
   }
   componentWillMount(){
-    const id = this.props.match.params.collectionId
+    const id = this.props.collectionId
     axios.get(`/api/user/:userId/collection/${id}`)
       .then((res) => {
         const newState = {...this.state}
@@ -34,7 +34,7 @@ class ShowCollection extends Component {
     this.setState(newState)
   }
   render () {
-    const collectionId = this.props.match.params.collectionId
+    const collectionId = this.props.collectionId
     const recordState = this.state.collection.records;
     const recordcomponent = recordState.map((record, i) => {
       return <Record key={i} collectionId={collectionId} record={record}/>

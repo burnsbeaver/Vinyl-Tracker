@@ -22,6 +22,7 @@ class App extends Component {
   _handleLogin = (email, password) => {
     return axios.post(`/api/user/login`, {email, password})
       .then((res) => {
+        console.log(res)
         const newState = {...this.state}
         newState.user.id = res.data._id;
         newState.user.firstName = res.data.firstName;
@@ -36,6 +37,7 @@ class App extends Component {
 
   }
   render() {
+    console.log(this.state.user)
     const HomeComponent = () => (
       <Home handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
@@ -47,7 +49,7 @@ class App extends Component {
         <div>
           <h1>Vinyl Tracker</h1>
           <div>
-            <Link to="/user/:userId">Home</Link>
+            <Link to={`/user/${this.state.user.id}`}>Home</Link>
           </div>
           <div>
             <Route exact path="/" render={HomeComponent} />
