@@ -6,7 +6,26 @@ import ShowCollection from "./components/ShowCollection";
 import AddRecord from "./components/AddRecord";
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      user: {
+        id: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        password: '',
+        collections: []
+      }
+    }
+  }
+  _handleLogin = (email, password) => {
+    console.log('Successful attempt for ' + email + password)
+  }
   render() {
+    const HomeComponent = () => (
+      <Home handleLogin={this._handleLogin} />
+    )
     return (
       <Router>
         <div>
@@ -15,7 +34,7 @@ class App extends Component {
             <Link to="/user/:userId">Home</Link>
           </div>
           <div>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render={HomeComponent} />
             <Route exact path="/user/:userId" component={User} />
             <Route exact path="/user/:userId/:collectionId" component={ShowCollection} />
             <Route exact path="/user/:userId/:collectionId/record/new" component={AddRecord} />
