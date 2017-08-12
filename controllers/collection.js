@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const Collection = require('../models/collection');
 const Record = require('../models/record')
@@ -22,9 +24,13 @@ router.post("/:id", (req, res) => {
       const foundCollection = user.collections.find((collection) => {
         return collection.id === req.params.id
       })
-      console.log(foundCollection)
+      const oldCollection = foundCollection;
       foundCollection.records.push(newRecord);
-      return user.save();
+      const updatedCollection = foundCollection;
+      console.log('new collection' + updatedCollection)
+      Collection.findByIdAndUpdate(oldCollection, updatedCollection, {new: true})
+        .then((collection) => {console.log('UPDATED' + collection)})
+      return user.save()
     })
     res.json()
 })
