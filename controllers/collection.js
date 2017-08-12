@@ -26,13 +26,7 @@ router.post("/:id", (req, res) => {
       foundCollection.records.push(newRecord);
       return user.save();
     })
-
-//   Collection.findById(req.params.id)
-//     .then((collection) => {
-//       collection.records.push(newRecord)
-//       return collection.save()
-//     })
-//
+    res.json()
 })
 
 module.exports = router;

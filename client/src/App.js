@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
+import {HeaderStyles} from './styles/Main'
 import User from "./components/User";
 import Home from "./components/Home";
 import ShowCollection from "./components/ShowCollection";
@@ -54,10 +55,11 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h1>Vinyl Tracker</h1>
-          <div>
+          <HeaderStyles>
+            <img src="http://dlp2gfjvaz867.cloudfront.net/product_photos/94461/gold_original.jpg" />
+            <h1>Vinyl Tracker</h1>
             <Link to={`/user/${this.state.user.id}`}>Home</Link>
-          </div>
+          </HeaderStyles>
           <div>
             <Route exact path="/" render={HomeComponent} />
             <Route exact path="/user/:userId" render={UserComponent} />

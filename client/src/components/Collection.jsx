@@ -10,7 +10,7 @@ class Collection extends Component {
     return(
       <div>
         <li>{this.props.collection.name} ({this.props.collection.records.length} Records)</li>
-        <span>{this.props.collection._id}</span>
+
         <button onClick={this._handleOnClick}>View Collection</button>
       </div>
     )

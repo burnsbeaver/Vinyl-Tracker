@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { HomePageForms } from '../styles/Main'
 import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
@@ -37,26 +38,34 @@ class Home extends Component {
     } else {
     return(
       <div>
-        <h3>Login</h3>
-        <form onSubmit={this._loginSubmit}>
-          <input type="email" value={this.state.loginInfo.email} name="email" placeholder="email" onChange={this._handleChange}/>
-          <input type="password" value={this.state.loginInfo.password} name="password" placeholder="password" onChange={this._handleChange}/>
-          <input type="submit" value="Login" />
-        </form>
-        <br/>
-        <br/>
-        <h3>Or, create an account</h3>
-        <form>
-          <input type="email" placeholder="email" />
-          <br/>
-          <input type="text" placeholder="Last Name" />
-          <br/>
-          <input type="text" placeholder="First Name" />
-          <br/>
-          <input type="password" placeholder="password" />
-          <br/>
-          <input type="submit" value="Create Account" />
-        </form>
+        <p><strong>Welcome to Vinyl Tracker, an app for keeping track of your Vinyl collections. With this application, you have the ability to track records you own, customize collections, and create a wishlist of albums you want.</strong></p>
+        <HomePageForms>
+          <div>
+            <h3>Login</h3>
+            <form onSubmit={this._loginSubmit}>
+              <input type="email" value={this.state.loginInfo.email} name="email" placeholder="email" onChange={this._handleChange}/>
+              <br/>
+              <input type="password" value={this.state.loginInfo.password} name="password" placeholder="password" onChange={this._handleChange}/>
+              <br/>
+              <input type="submit" value="Login" />
+            </form>
+          </div>
+
+          <div>
+            <h3>Or, create an account</h3>
+            <form>
+              <input type="email" placeholder="email" />
+              <br/>
+              <input type="text" placeholder="Last Name" />
+              <br/>
+              <input type="text" placeholder="First Name" />
+              <br/>
+              <input type="password" placeholder="password" />
+              <br/>
+              <input type="submit" value="Create Account" />
+            </form>
+          </div>
+        </HomePageForms>
       </div>
     )
   }

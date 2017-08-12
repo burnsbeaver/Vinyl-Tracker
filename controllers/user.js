@@ -26,6 +26,7 @@ router.post("/login", (req, res) => {
       return user.email === userEmail
     })
     res.json(userToSearch)
-})});
+  })
+});
 
 module.exports = router;
