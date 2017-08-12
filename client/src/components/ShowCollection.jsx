@@ -42,7 +42,7 @@ class ShowCollection extends Component {
 
     if (this.state.newRecord) {
       return (
-        <AddRecord collectionId={collectionId}/>
+        <AddRecord handleAddRecord={this.props.handleAddRecord} collectionId={collectionId}/>
       )
     } else {
       return (

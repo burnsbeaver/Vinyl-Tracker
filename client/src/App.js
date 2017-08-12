@@ -10,12 +10,12 @@ class App extends Component {
     super()
     this.state = {
       user: {
-        id: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        password: '',
-        collections: []
+        id: '0',
+        email: '0',
+        firstName: '0',
+        lastName: '0',
+        password: '0',
+        collections: [0, 0, 0]
       }
     }
   }
@@ -33,19 +33,23 @@ class App extends Component {
         return true;
       })
   }
-  _handleAddRecord = () => {
-
+  _handleAddRecord = (newRecord, collectionId) => {
+    const id = collectionId;
+    console.log(id + this.state.user.id)
+    console.log('sending post request')
+    axios.post(`/api/user/${this.state.user.id}/collection/${id}`, newRecord)
+      .then((res) => {
+        console.log(res)
+      })
   }
   render() {
-    console.log(this.state.user)
+    console.log(this._handleAddRecord)
     const HomeComponent = () => (
       <Home handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
-    const ShowCollectionComponent = () => (
-      <ShowCollection handleAddRecord={this._handleAddRecord} />
-    )
+
     const UserComponent = () => (
-      <User userId={this.state.user.id} />
+      <User userId={this.state.user.id} handleAddRecord={this._handleAddRecord}/>
     )
     return (
       <Router>
@@ -57,7 +61,6 @@ class App extends Component {
           <div>
             <Route exact path="/" render={HomeComponent} />
             <Route exact path="/user/:userId" render={UserComponent} />
-            <Route exact path="/user/:userId/:collectionId" render={ShowCollectionComponent} />
           </div>
         </div>
       </Router>

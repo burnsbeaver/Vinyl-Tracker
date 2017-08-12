@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 });
 
 router.get("/:id", (req,res) => {
-  console.log('user show path was hit!')
   User.findById(req.params.id).then((user) => {
     res.json(user);
   });
@@ -26,7 +25,6 @@ router.post("/login", (req, res) => {
       const userToSearch = users.find((user ) => {
       return user.email === userEmail
     })
-    console.log(userToSearch)
     res.json(userToSearch)
 })});
 

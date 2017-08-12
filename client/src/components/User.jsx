@@ -20,9 +20,8 @@ class User extends Component {
       viewCollection: false
     }
   }
-
   componentWillMount(){
-    const id = this.props.userId;
+      const id = this.props.userId
       axios.get(`/api/user/${id}`)
         .then((res) => {
           const newState = {...this.state}
@@ -41,12 +40,20 @@ class User extends Component {
     newState.collection.id = collectionId
     this.setState(newState)
   }
+  _handleReturnToCollection = () => {
+    const newState = {...this.state}
+    newState.viewCollection = false
+    this.setState(newState)
+  }
 
   render () {
     if(this.state.viewCollection) {
       console.log('view Collection Switched to true')
       return(
-          <ShowCollection collectionId={this.state.collection.id}/>
+        <div>
+          <button onClick={this._handleReturnToCollection}>Back to Collections</button>
+          <ShowCollection handleAddRecord={this.props.handleAddRecord} user={this.state.user} collectionId={this.state.collection.id}/>
+        </div>
         )
     } else{
     return(

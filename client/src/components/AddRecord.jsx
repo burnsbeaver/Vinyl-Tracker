@@ -27,15 +27,16 @@ class AddRecord extends Component {
 
          this.setState({ newRecord })
  };
- _handleSubmit = event => {
-   event.stopPropogation()
-
+ _handleSubmit = (e) => {
+   e.preventDefault()
+   this.props.handleAddRecord(this.state.newRecord, this.props.collectionId)
  }
   render () {
+    console.log(this.props.handleAddRecord)
     return(
       <div>
         <h3>New Record</h3>
-        <form>
+        <form onSubmit={this._handleSubmit}>
           <input type="text"  onChange={this._handleChange}
               value={this.state.newRecord.name} name="name" placeholder="Record Name" />
           <input type="text" onChange={this._handleChange}
