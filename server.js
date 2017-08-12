@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UsersController = require('./controllers/user')
 const CollectionController = require('./controllers/collection')
+const RecordController = require('./controllers/record');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(__dirname + '/client/build/'));
 
 app.use('/api/user', UsersController);
 app.use('/api/user/:userId/collection', CollectionController)
+app.use('/api/user/:userId/collection/:collectionId/record', RecordController)
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/client/build/index.html");

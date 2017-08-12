@@ -33,11 +33,16 @@ class ShowCollection extends Component {
     newState.newRecord = true
     this.setState(newState)
   }
+  _handleDeleteRecord = (recordId) => {
+    const id = recordId;
+    axios.delete(`/api/user/:userId/collection/${this.state.collection.id}/record/${id}`)
+      .then(() => {console.log('hit delete route for ' + recordId)})
+  }
   render () {
     const collectionId = this.props.collectionId
     const recordState = this.state.collection.records;
     const recordcomponent = recordState.map((record, i) => {
-      return <Record key={i} collectionId={collectionId} record={record}/>
+      return <Record key={i} deleteRecord={this._handleDeleteRecord} collectionId={collectionId} record={record}/>
     })
 
     if (this.state.newRecord) {
