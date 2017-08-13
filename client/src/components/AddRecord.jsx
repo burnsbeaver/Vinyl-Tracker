@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import SearchForRecord from './SearchForRecord';
 
 class AddRecord extends Component {
   constructor() {
@@ -7,14 +9,15 @@ class AddRecord extends Component {
       newRecord: {
         name: '',
         artist: '',
-        year: ''
+        year: '',
+        image: ''
       },
       collection: {
         id: '',
         name: '',
         numberOfRecords: '',
         records: []
-      }
+      },
     }
   }
 
@@ -30,9 +33,10 @@ class AddRecord extends Component {
  _handleSubmit = (e) => {
    e.preventDefault()
    this.props.handleAddRecord(this.state.newRecord, this.props.collectionId)
- }
-  render () {
-    console.log(this.props.handleAddRecord)
+};
+
+
+render () {
     return(
       <div>
         <h3>New Record</h3>
@@ -45,6 +49,8 @@ class AddRecord extends Component {
               value={this.state.newRecord.year} name="year" placeholder="Release Year" />
           <input type="submit" value="Add Record" />
         </form>
+        <br />
+        <SearchForRecord records={this.state.record}/>
       </div>
     )
   }

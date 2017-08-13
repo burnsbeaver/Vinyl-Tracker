@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var RecordSchema = new Schema({
   name: String,
   artist: String,
-  year: Number
+  year: Number,
+  image: String
 });
 
 var CollectionSchema = new Schema({

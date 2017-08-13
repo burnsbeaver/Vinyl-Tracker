@@ -15,31 +15,36 @@ Record.remove({}, (err) => console.log(err));
 const ram = new Record({
   name: "Random Access Memories",
   artist: "Daft Punk",
-  year: 2013
+  year: 2013,
+  image: "http://fillmurray.com/30/30"
 });
 
 const homework = new Record({
   name: "Homework",
   artist: "Daft Punk",
-  year: 1997
+  year: 1997,
+  image: "http://fillmurray.com/30/30"
 });
 
 const discovery = new Record({
   name: "Discovery",
   artist: "Daft Punk",
-  year: 1997
+  year: 1997,
+  image: "http://fillmurray.com/30/30"
 });
 
 const stadiumArcadium = new Record({
   name: "Stadium Arcadium",
   artist: "Red Hot Chili Peppers",
-  year: 2006
+  year: 2006,
+  image: "http://fillmurray.com/30/30"
 });
 
 const bloodSugarSexMagic = new Record({
   name: "Blood Sugar Sex Magic",
   artist: "Red Hot Chili Peppers",
-  year: 1991
+  year: 1991,
+  image: "http://fillmurray.com/30/30"
 });
 
 const myRecords = new Collection({
