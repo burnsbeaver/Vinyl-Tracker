@@ -11,7 +11,6 @@ var RecordSchema = new Schema({
 var CollectionSchema = new Schema({
   name: String,
   description: String,
-  numberOfRecords: Number,
   records: [RecordSchema]
 });
 

@@ -13,6 +13,17 @@ router.get("/:id", (req, res) => {
     res.json(collection);
   });
 });
+router.post("/new", (req, res) => {
+  const newCollection = new Collection()
+  newCollection.name = req.body.name;
+  newCollection.description = req.body.description
+  newCollection.save()
+  User.findById(req.params.userId)
+    .then((user) => {
+      user.collections.push(newCollection)
+      return user.save()
+    })
+})
 
 router.post("/:id", (req, res) => {
   console.log('do i have user: ' + req.params.userId)

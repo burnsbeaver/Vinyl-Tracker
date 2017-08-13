@@ -10,7 +10,6 @@ class ShowCollection extends Component {
       collection: {
         id: '',
         name: '',
-        numberOfRecords: '',
         records: []
       },
       newRecord: false
@@ -25,7 +24,6 @@ class ShowCollection extends Component {
         const newState = {...this.state}
         newState.collection.id = res.data._id;
         newState.collection.name = res.data.name;
-        newState.collection.numberOfRecords = res.data.numberOfRecords;
         newState.collection.records = res.data.records;
         this.setState(newState)
       })
@@ -55,7 +53,7 @@ class ShowCollection extends Component {
       return (
         <div>
           <h2>{this.state.collection.name}</h2>
-          <h4>{this.state.collection.numberOfRecords} Records</h4>
+          <h4>{this.state.collection.records.length} Records</h4>
           <button onClick={this._handleAddNewRecord}>Add New Record</button>
           <ul>
             {recordcomponent}

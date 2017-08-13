@@ -50,14 +50,12 @@ const bloodSugarSexMagic = new Record({
 const myRecords = new Collection({
   name: "My Records",
   description: "Vinyl's that I own",
-  numberOfRecords: 3,
   records: [ram, homework, discovery]
 });
 
 const wishList = new Collection({
   name: "Wish List",
   description: "Vinyl's I want",
-  numberOfRecords: 2,
   records: [bloodSugarSexMagic, stadiumArcadium]
 })
 
