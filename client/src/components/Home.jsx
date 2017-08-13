@@ -15,13 +15,12 @@ class Home extends Component {
     }
   }
   _createUserMiddleMan = (newUser) => {
-    console.log(newUser)
     this.props.createUser(newUser)
-        // .then((redirect) => {
-        //   const newState = {...this.state}
-        //   newState.redirect = redirect
-        //   this.setState(newState)
-        // })
+        .then((redirect) => {
+          const newState = {...this.state}
+          newState.redirect = redirect
+          this.setState(newState)
+        })
   }
   _loginSubmit = (e) => {
     e.preventDefault()

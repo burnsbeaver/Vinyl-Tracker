@@ -6,39 +6,38 @@ class CreateUser extends Component {
     this.state = {
       newUserInfo: {
         email: "",
-        fisrtName: "",
+        firstName: "",
         lastName: "",
         password: ""
-      },
-      redirect: false
+      }
     }
   }
   _handleCreateUser = (e) => {
     e.preventDefault()
 
-    console.log('testing')
+    this.props.createUser(this.state.newUserInfo)
   }
   _handleChange = event => {
     const attributeName = event.target.name;
          const attributeValue = event.target.value;
 
-         const loginInfo = { ...this.state.loginInfo };
-         loginInfo[attributeName] = attributeValue;
+         const newUserInfo = { ...this.state.newUserInfo };
+         newUserInfo[attributeName] = attributeValue;
 
-         this.setState({ loginInfo })
+         this.setState({ newUserInfo })
 }
   render () {
     return(
       <div>
         <h3>Or, create an account</h3>
         <form onSubmit={this._handleCreateUser}>
-          <input type="email" placeholder="email" name="email"/>
+          <input type="email" placeholder="email" onChange={this._handleChange} value={this.state.newUserInfo.email} name="email"/>
           <br/>
-          <input type="text" placeholder="Last Name" name="lastName"/>
+          <input type="text" placeholder="First Name" onChange={this._handleChange} value={this.state.newUserInfo.fistName} name="firstName"/>
           <br/>
-          <input type="text" placeholder="First Name" name="firstName"/>
+          <input type="text" placeholder="Last Name" onChange={this._handleChange} value={this.state.newUserInfo.lastName} name="lastName"/>
           <br/>
-          <input type="password" placeholder="password" name="password"/>
+          <input type="password" placeholder="password" onChange={this._handleChange} value={this.state.newUserInfo.password} name="password"/>
           <br/>
           <input type="submit" value="Create Account" />
         </form>

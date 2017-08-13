@@ -18,8 +18,10 @@ class ShowCollection extends Component {
   }
   componentWillMount(){
     const id = this.props.collectionId
+    console.log(id)
     axios.get(`/api/user/:userId/collection/${id}`)
       .then((res) => {
+        console.log(res)
         const newState = {...this.state}
         newState.collection.id = res.data._id;
         newState.collection.name = res.data.name;

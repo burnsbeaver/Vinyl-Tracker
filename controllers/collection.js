@@ -7,7 +7,9 @@ const User = require('../models/user')
 const router = express.Router({mergeParams: true});
 
 router.get("/:id", (req, res) => {
+  console.log(req.params.id)
   Collection.findById(req.params.id).then((collection) => {
+    console.log(collection)
     res.json(collection);
   });
 });

@@ -26,6 +26,21 @@ class App extends Component {
         console.log(res)
         const newState = {...this.state}
         newState.user.id = res.data._id;
+        newState.user.email = res.data.email;
+        newState.user.firstName = res.data.firstName;
+        newState.user.lastName = res.data.lastName;
+        newState.user.password = res.data.password;
+        newState.user.collections = res.data.collections
+        this.setState(newState)
+        return true;
+      })
+  }
+  _handleCreateUser = (newUser) => {
+    return axios.post(`/api/user/create`, newUser)
+      .then((res) => {
+        const newState = {...this.state}
+        newState.user.id = res.data._id;
+        newState.user.email = res.data.email;
         newState.user.firstName = res.data.firstName;
         newState.user.lastName = res.data.lastName;
         newState.user.password = res.data.password;
@@ -44,9 +59,8 @@ class App extends Component {
       })
   }
   render() {
-    console.log(this._handleAddRecord)
     const HomeComponent = () => (
-      <Home handleLogin={this._handleLogin} userId={this.state.user.id}/>
+      <Home createUser={this._handleCreateUser} handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
 
     const UserComponent = () => (
@@ -58,7 +72,7 @@ class App extends Component {
           <HeaderStyles>
             <img src="http://dlp2gfjvaz867.cloudfront.net/product_photos/94461/gold_original.jpg" />
             <h1>Vinyl Tracker</h1>
-            <Link to={`/user/${this.state.user.id}`}>Home</Link>
+            <Link to={`/`}>Logout</Link>
           </HeaderStyles>
           <div>
             <Route exact path="/" render={HomeComponent} />
