@@ -16,6 +16,17 @@ router.get("/:id", (req,res) => {
   });
 });
 
+router.post('/create', (req, res) => {
+  const newUser = new User();
+  newUser.email = req.body.email;
+  newUser.password = req.body.password;
+  newUser.firstName = req.body.firstName;
+  newUser.lastName = req.body.lastName;
+  newUser.collections = [];
+  console.log(newUser)
+
+})
+
 router.post("/login", (req, res) => {
   const userEmail = req.body.email;
   const userPassword = req.body.password;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HomePageForms } from '../styles/Main'
 import { Redirect } from 'react-router-dom';
+import CreateUser from './CreateUser'
 
 class Home extends Component {
   constructor() {
@@ -12,6 +13,15 @@ class Home extends Component {
       },
       redirect: false
     }
+  }
+  _createUserMiddleMan = (newUser) => {
+    console.log(newUser)
+    this.props.createUser(newUser)
+        // .then((redirect) => {
+        //   const newState = {...this.state}
+        //   newState.redirect = redirect
+        //   this.setState(newState)
+        // })
   }
   _loginSubmit = (e) => {
     e.preventDefault()
@@ -52,21 +62,7 @@ class Home extends Component {
               <input type="submit" value="Login" />
             </form>
           </div>
-
-          <div>
-            <h3>Or, create an account</h3>
-            <form>
-              <input type="email" placeholder="email" />
-              <br/>
-              <input type="text" placeholder="Last Name" />
-              <br/>
-              <input type="text" placeholder="First Name" />
-              <br/>
-              <input type="password" placeholder="password" />
-              <br/>
-              <input type="submit" value="Create Account" />
-            </form>
-          </div>
+          <CreateUser createUser={this._createUserMiddleMan} />
         </HomePageForms>
       </div>
     )
