@@ -36,19 +36,8 @@ class User extends Component {
         })
   }
 
-  _updateComponent(){
-    const id = this.props.userId
-    console.log('UPDATING')
-    axios.get(`/api/user/${id}`)
-      .then((res) => {
-        const newState = {...this.state}
-        newState.user.id = res.data._id;
-        newState.user.firstName = res.data.firstName;
-        newState.user.lastName = res.data.lastName;
-        newState.user.password = res.data.password;
-        newState.user.collections = res.data.collections
-        this.setState(newState)
-      })
+  _updateComponent(user){
+    console.log(user)
   }
 
   _handleViewCollection = (collectionId) => {
@@ -56,9 +45,11 @@ class User extends Component {
     newState.viewCollection = true
     newState.collection.id = collectionId
     this.setState(newState)
+
   }
   _handleReturnToCollection = () => {
     const newState = {...this.state}
+    newState.user.collections = this.props.collections
     newState.viewCollection = false
     this.setState(newState)
   }
@@ -71,7 +62,6 @@ class User extends Component {
     const id = this.props.userId
     axios.post(`/api/user/${id}/collection/new`, newCollection)
       .then((res) => {console.log(res)})
-      .then(this._updateComponent())
   }
 
   render () {

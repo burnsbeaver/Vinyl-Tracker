@@ -55,7 +55,14 @@ class App extends Component {
     console.log('sending post request')
     axios.post(`/api/user/${this.state.user.id}/collection/${id}`, newRecord)
       .then((res) => {
-        console.log(res)
+        const newState = {...this.state}
+        newState.user.id = res.data._id;
+        newState.user.email = res.data.email;
+        newState.user.firstName = res.data.firstName;
+        newState.user.lastName = res.data.lastName;
+        newState.user.password = res.data.password;
+        newState.user.collections = res.data.collections
+        this.setState(newState)
       })
   }
   render() {
@@ -64,7 +71,7 @@ class App extends Component {
     )
 
     const UserComponent = () => (
-      <User userId={this.state.user.id} handleAddRecord={this._handleAddRecord}/>
+      <User userId={this.state.user.id} collections={this.state.user.collections} handleAddRecord={this._handleAddRecord}/>
     )
     return (
       <Router>

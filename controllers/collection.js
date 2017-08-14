@@ -40,12 +40,15 @@ router.post("/:id", (req, res) => {
       const oldCollection = foundCollection;
       foundCollection.records.push(newRecord);
       const updatedCollection = foundCollection;
-      console.log('new collection' + updatedCollection)
       Collection.findByIdAndUpdate(oldCollection, updatedCollection, {new: true})
         .then((collection) => {console.log('UPDATED' + collection)})
+        .then(() => {console.log(user)
+        res.json(user)
+      })
+
       return user.save()
     })
-    res.json()
+
 })
 
 module.exports = router;
