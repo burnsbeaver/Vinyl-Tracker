@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { StyledRecord } from "../styles/Main"
 
 class Record extends Component {
   _RemoveRecord = () => {
@@ -8,14 +9,19 @@ class Record extends Component {
   }
   render () {
     return (
-      <div>
-      <img src={this.props.record.image} alt=""/>
-      <li>
-        <h5>{this.props.record.name}</h5>
-        <h6>By: {this.props.record.artist}</h6>
-        <button onClick={this._RemoveRecord}>Remove Record</button>
-      </li>
-      </div>
+      <StyledRecord>
+        <div>
+          <img src={this.props.record.image} alt=""/>
+        </div>
+        <div>
+            <h3>{this.props.record.name}</h3>
+            <h4>By: {this.props.record.artist}</h4>
+            <h4>Release Year: {this.props.record.year}</h4>
+        </div>
+        <div>
+          <button onClick={this._RemoveRecord}>Remove Record</button>
+        </div>
+      </StyledRecord>
     )
   }
 }

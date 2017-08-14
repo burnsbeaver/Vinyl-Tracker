@@ -2,8 +2,19 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
 import {HeaderStyles} from './styles/Main'
+import { injectGlobal } from 'styled-components'
 import User from "./components/User";
 import Home from "./components/Home";
+
+injectGlobal`
+  body {
+    background-image: url('http://www.efurnituremart.com/images/PO/Jaipur-Rugs-Red-and-Orange-Solid-Pattern-Shag-Rug---VR02.jpg');
+    background-position: center;
+    background-size: cover;
+    color: white;
+    font-weight: 800;
+  }
+`;
 
 class App extends Component {
   constructor() {

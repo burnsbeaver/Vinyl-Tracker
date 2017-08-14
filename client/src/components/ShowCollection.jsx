@@ -50,7 +50,7 @@ class ShowCollection extends Component {
     const recordState = this.state.collection.records;
     const recordcomponent = recordState.map((record, i) => {
       return <Record key={i} deleteRecord={this._handleDeleteRecord} collectionId={collectionId} record={record}/>
-    })
+    }).sort()
 
     if (this.state.newRecord) {
       return (
