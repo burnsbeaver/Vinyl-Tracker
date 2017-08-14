@@ -53,10 +53,10 @@ class Home extends Component {
             <h3>Login</h3>
             <form onSubmit={this._loginSubmit}>
               <input type="email" value={this.state.loginInfo.email} name="email"
-                placeholder="email" onChange={this._handleChange}/>
+                placeholder="email" onChange={this._handleChange} required/>
               <br/>
               <input type="password" value={this.state.loginInfo.password} name="password"
-                placeholder="password" onChange={this._handleChange}/>
+                placeholder="password" onChange={this._handleChange} required/>
               <br/>
               <input type="submit" value="Login" />
             </form>

@@ -12,6 +12,7 @@ class User extends Component {
         id: '',
         firstName: '',
         lastName: '',
+        email: '',
         password: '',
         collections: []
       },
@@ -30,12 +31,27 @@ class User extends Component {
           newState.user.id = res.data._id;
           newState.user.firstName = res.data.firstName;
           newState.user.lastName = res.data.lastName;
+          newState.user.email = res.data.email
           newState.user.password = res.data.password;
           newState.user.collections = res.data.collections
           this.setState(newState)
         })
   }
-
+  // _updateState = () => {
+  //   const email = this.state.email
+  //   const password = this.state.password
+  //   axios.post(`/api/user/login`, {email, password})
+  //   .then((res) => {
+  //     const newState = {...this.state}
+  //     newState.user.id = res.data._id;
+  //     newState.user.email = res.data.email;
+  //     newState.user.firstName = res.data.firstName;
+  //     newState.user.lastName = res.data.lastName;
+  //     newState.user.password = res.data.password;
+  //     newState.user.collections = res.data.collections
+  //     this.setState(newState)
+  //   })
+  // }
   _handleViewCollection = (collectionId) => {
     const newState = {...this.state}
     newState.viewCollection = true
@@ -66,7 +82,6 @@ class User extends Component {
   }
 
   render () {
-    let newCollectionWords = '';
     if(this.state.viewCollection) {
       return(
         <div>

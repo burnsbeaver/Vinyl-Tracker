@@ -31,13 +31,13 @@ class CreateUser extends Component {
       <div>
         <h3>Or, create an account</h3>
         <form onSubmit={this._handleCreateUser}>
-          <input type="email" placeholder="email" onChange={this._handleChange} value={this.state.newUserInfo.email} name="email"/>
+          <input type="email" placeholder="email" onChange={this._handleChange} value={this.state.newUserInfo.email} name="email" required/>
           <br/>
-          <input type="text" placeholder="First Name" onChange={this._handleChange} value={this.state.newUserInfo.fistName} name="firstName"/>
+          <input type="text" placeholder="First Name" onChange={this._handleChange} value={this.state.newUserInfo.fistName} name="firstName" required/>
           <br/>
-          <input type="text" placeholder="Last Name" onChange={this._handleChange} value={this.state.newUserInfo.lastName} name="lastName"/>
+          <input type="text" placeholder="Last Name" onChange={this._handleChange} value={this.state.newUserInfo.lastName} name="lastName" required/>
           <br/>
-          <input type="password" placeholder="password" onChange={this._handleChange} value={this.state.newUserInfo.password} name="password"/>
+          <input type="password" placeholder="password" onChange={this._handleChange} value={this.state.newUserInfo.password} name="password" required/>
           <br/>
           <input type="submit" value="Create Account" />
         </form>

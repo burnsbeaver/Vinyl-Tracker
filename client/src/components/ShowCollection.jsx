@@ -17,10 +17,8 @@ class ShowCollection extends Component {
   }
   componentWillMount(){
     const id = this.props.collectionId
-    console.log(id)
     axios.get(`/api/user/:userId/collection/${id}`)
       .then((res) => {
-        console.log(res)
         const newState = {...this.state}
         newState.collection.id = res.data._id;
         newState.collection.name = res.data.name;
@@ -35,8 +33,16 @@ class ShowCollection extends Component {
   }
   _handleDeleteRecord = (recordId) => {
     const id = recordId;
-    axios.delete(`/api/user/:userId/collection/${this.state.collection.id}/record/${id}`)
-      .then(() => {console.log('hit delete route for ' + recordId)})
+    axios.delete(`/api/user/${this.props.user.id}/collection/${this.state.collection.id}/record/${id}`)
+      .then((res) => {console.log('hit delete route for ' + recordId)
+        console.log(res)
+        const newState = {...this.state}
+        newState.collection.id = res.data._id;
+        newState.collection.name = res.data.name;
+        newState.collection.records = res.data.records;
+        this.setState(newState)
+        // this.props.updateState()
+      })
   }
   render () {
     const collectionId = this.props.collectionId
@@ -47,7 +53,7 @@ class ShowCollection extends Component {
 
     if (this.state.newRecord) {
       return (
-        <AddRecord handleAddRecord={this.props.handleAddRecord} collectionId={collectionId}/>
+        <AddRecord handleAddRecord={this.props.handleAddRecord} collection={this.state.collection} collectionId={collectionId}/>
       )
     } else {
       return (

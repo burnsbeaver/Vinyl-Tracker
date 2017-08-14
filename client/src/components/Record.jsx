@@ -9,11 +9,12 @@ class Record extends Component {
   render () {
     return (
       <div>
-        <li>
-          <h5>{this.props.record.name}</h5>
-          <h6>By: {this.props.record.artist}</h6>
-          <button onClick={this._RemoveRecord}>Remove Record</button>
-        </li>
+      <img src={this.props.record.image} alt=""/>
+      <li>
+        <h5>{this.props.record.name}</h5>
+        <h6>By: {this.props.record.artist}</h6>
+        <button onClick={this._RemoveRecord}>Remove Record</button>
+      </li>
       </div>
     )
   }

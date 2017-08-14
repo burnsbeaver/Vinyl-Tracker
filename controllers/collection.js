@@ -32,6 +32,7 @@ router.post("/:id", (req, res) => {
   newRecord.name = req.body.name;
   newRecord.artist = req.body.artist;
   newRecord.year = req.body.year;
+  newRecord.image = req.body.image
 
   User.findById(req.params.userId)
     .then((user) => {

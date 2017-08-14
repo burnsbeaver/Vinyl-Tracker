@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import SearchForRecord from './SearchForRecord';
 
 class AddRecord extends Component {
@@ -11,12 +10,6 @@ class AddRecord extends Component {
         artist: '',
         year: '',
         image: ''
-      },
-      collection: {
-        id: '',
-        name: '',
-        numberOfRecords: '',
-        records: []
       },
     }
   }
@@ -40,17 +33,20 @@ render () {
     return(
       <div>
         <h3>New Record</h3>
+        <h5>Manually add a record in, or search for a match below!</h5>
         <form onSubmit={this._handleSubmit}>
           <input type="text"  onChange={this._handleChange}
-              value={this.state.newRecord.name} name="name" placeholder="Record Name" />
+              value={this.state.newRecord.name} name="name" placeholder="Record Name" required/>
           <input type="text" onChange={this._handleChange}
-              value={this.state.newRecord.artist} name="artist" placeholder="Artist" />
+              value={this.state.newRecord.artist} name="artist" placeholder="Artist" required/>
           <input type="number" onChange={this._handleChange}
-              value={this.state.newRecord.year} name="year" placeholder="Release Year" />
-          <input type="submit" value="Add Record" />
+              value={this.state.newRecord.year} name="year" placeholder="Release Year" required/>
+          <input type="text" onChange={this._handleChange}
+                value={this.state.newRecord.image} name="image" placeholder="URL to Record Image" required/>
+              <input type="submit" value="Add Record" />
         </form>
         <br />
-        <SearchForRecord records={this.state.record}/>
+        <SearchForRecord collection={this.props.collection} records={this.state.record}/>
       </div>
     )
   }

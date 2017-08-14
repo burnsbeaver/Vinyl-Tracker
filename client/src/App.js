@@ -4,7 +4,6 @@ import axios from 'axios'
 import {HeaderStyles} from './styles/Main'
 import User from "./components/User";
 import Home from "./components/Home";
-import ShowCollection from "./components/ShowCollection";
 
 class App extends Component {
   constructor() {
@@ -20,10 +19,10 @@ class App extends Component {
       }
     }
   }
+
   _handleLogin = (email, password) => {
     return axios.post(`/api/user/login`, {email, password})
       .then((res) => {
-        console.log(res)
         const newState = {...this.state}
         newState.user.id = res.data._id;
         newState.user.email = res.data.email;
@@ -51,8 +50,6 @@ class App extends Component {
   }
   _handleAddRecord = (newRecord, collectionId) => {
     const id = collectionId;
-    console.log(id + this.state.user.id)
-    console.log('sending post request')
     axios.post(`/api/user/${this.state.user.id}/collection/${id}`, newRecord)
       .then((res) => {
         const newState = {...this.state}
@@ -77,7 +74,7 @@ class App extends Component {
       <Router>
         <div>
           <HeaderStyles>
-            <img src="http://dlp2gfjvaz867.cloudfront.net/product_photos/94461/gold_original.jpg" />
+            <img src="http://dlp2gfjvaz867.cloudfront.net/product_photos/94461/gold_original.jpg" alt="" />
             <h1>Vinyl Tracker</h1>
             <Link to={`/`}>Logout</Link>
           </HeaderStyles>

@@ -34,13 +34,13 @@ class SearchForRecord extends Component {
 
   render () {
     const ImgComponent = this.state.discogsResults.record.map((record, i) => {
-      return <ApiResults key={i} record={record} />
+      return <ApiResults collection={this.props.collection} key={i} record={record} />
       })
     return (
       <div>
         <form onSubmit={this._handleSearch}>
           <input type="text"  onChange={this._handleSearchChange}
-              value={this.state.itemToSearch} name="itemToSearch" placeholder="Search for Record" />
+              value={this.state.itemToSearch} name="itemToSearch" placeholder="Search for Record" required/>
           <input type="submit" value="Search for record" />
         </form>
         {ImgComponent}
