@@ -46,7 +46,7 @@ render () {
               <input type="submit" value="Add Record" />
         </form>
         <br />
-        <SearchForRecord collection={this.props.collection} records={this.state.record}/>
+        <SearchForRecord handleAddRecord={this.props.handleAddRecord} collectionId={this.props.collectionId} collection={this.props.collection} records={this.state.record}/>
       </div>
     )
   }

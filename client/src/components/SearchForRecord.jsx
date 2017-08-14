@@ -34,7 +34,7 @@ class SearchForRecord extends Component {
 
   render () {
     const ImgComponent = this.state.discogsResults.record.map((record, i) => {
-      return <ApiResults collection={this.props.collection} key={i} record={record} />
+      return <ApiResults collection={this.props.collection} key={i} record={record} handleAddRecord={this.props.handleAddRecord} collectionId={this.props.collectionId}/>
       })
     return (
       <div>
