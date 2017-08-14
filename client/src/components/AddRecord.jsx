@@ -14,7 +14,7 @@ class AddRecord extends Component {
     }
   }
 
-  _handleChange = event => {
+_handleChange = event => {
     const attributeName = event.target.name;
          const attributeValue = event.target.value;
 

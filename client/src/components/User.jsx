@@ -37,6 +37,15 @@ class User extends Component {
           this.setState(newState)
         })
   }
+  _addRecordMiddleMan = (Record, collectionId) => {
+    this.props.handleAddRecord(Record, collectionId)
+    .then((response) => {
+      const newState = {...this.state}
+      newState.user.collections = this.props.collections
+      newState.viewCollection = response
+      this.setState(newState)
+    })
+  }
   // _updateState = () => {
   //   const email = this.state.email
   //   const password = this.state.password
@@ -86,7 +95,7 @@ class User extends Component {
       return(
         <div>
           <button onClick={this._handleReturnToCollection}>Back to Collections</button>
-          <ShowCollection handleAddRecord={this.props.handleAddRecord} user={this.state.user} collectionId={this.state.collection.id}/>
+          <ShowCollection handleAddRecord={this._addRecordMiddleMan} user={this.state.user} collectionId={this.state.collection.id}/>
         </div>
         )
     } else{
