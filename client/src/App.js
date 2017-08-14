@@ -50,7 +50,7 @@ class App extends Component {
   }
   _handleAddRecord = (newRecord, collectionId) => {
     const id = collectionId;
-    axios.post(`/api/user/${this.state.user.id}/collection/${id}`, newRecord)
+    return axios.post(`/api/user/${this.state.user.id}/collection/${id}`, newRecord)
       .then((res) => {
         const newState = {...this.state}
         newState.user.id = res.data._id;
@@ -60,6 +60,7 @@ class App extends Component {
         newState.user.password = res.data.password;
         newState.user.collections = res.data.collections
         this.setState(newState)
+        return false
       })
   }
   render() {

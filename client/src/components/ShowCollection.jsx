@@ -31,6 +31,14 @@ class ShowCollection extends Component {
     newState.newRecord = true
     this.setState(newState)
   }
+  _addRecordMiddleMan = (Record, collectionId) => {
+    this.props.handleAddRecord(Record, collectionId)
+    .then((response) => {
+      const newState = {...this.state}
+      newState.newRecord = response
+      this.setState(newState)
+    })
+  }
   _handleDeleteRecord = (recordId) => {
     const id = recordId;
     axios.delete(`/api/user/${this.props.user.id}/collection/${this.state.collection.id}/record/${id}`)
@@ -53,7 +61,7 @@ class ShowCollection extends Component {
 
     if (this.state.newRecord) {
       return (
-        <AddRecord handleAddRecord={this.props.handleAddRecord} collection={this.state.collection} collectionId={collectionId}/>
+        <AddRecord handleAddRecord={this._addRecordMiddleMan} collection={this.state.collection} collectionId={collectionId}/>
       )
     } else {
       return (
