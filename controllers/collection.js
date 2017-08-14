@@ -21,6 +21,7 @@ router.post("/new", (req, res) => {
   User.findById(req.params.userId)
     .then((user) => {
       user.collections.push(newCollection)
+      res.json(user)
       return user.save()
     })
 })

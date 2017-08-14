@@ -36,10 +36,6 @@ class User extends Component {
         })
   }
 
-  _updateComponent(user){
-    console.log(user)
-  }
-
   _handleViewCollection = (collectionId) => {
     const newState = {...this.state}
     newState.viewCollection = true
@@ -61,7 +57,12 @@ class User extends Component {
   _handleNewCollection = (newCollection) => {
     const id = this.props.userId
     axios.post(`/api/user/${id}/collection/new`, newCollection)
-      .then((res) => {console.log(res)})
+      .then((res) => {
+        const newState = {...this.state}
+        newState.user.collections = res.data.collections
+        newState.newCollection = false;
+        this.setState(newState)
+      })
   }
 
   render () {
