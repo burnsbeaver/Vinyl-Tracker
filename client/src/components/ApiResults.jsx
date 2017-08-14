@@ -33,7 +33,6 @@ class ApiResults extends Component {
         <div>
           <img src={this.props.record.thumb} alt=""/>
         </div>
-        {console.log(this.props.record)}
         <button onClick={this._handleApiAdd}>Add to {this.props.collection.name}</button>
       </span>
     )
