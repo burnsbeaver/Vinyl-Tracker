@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import ApiResults from './ApiResults'
 
 class SearchForRecord extends Component {
   constructor() {
@@ -22,11 +23,9 @@ class SearchForRecord extends Component {
 
     axios.get(`https://api.discogs.com/database/search?release_title=${this.state.itemToSearch}&format=vinyl&token=noWyHurwtFCYPOfUkUbcJUlrPiAyUwLbraYYHITN`)
       .then((res) => {
-        console.log(res.data.results.length)
-        console.log(res.data)
         const newState = {...this.state}
         newState.discogsResults.record = res.data.results.map((result, i) => {
-          return result.thumb
+          return result
         })
         newState.search = true
         this.setState(newState)
@@ -34,8 +33,8 @@ class SearchForRecord extends Component {
    }
 
   render () {
-    const ImgComponent = this.state.discogsResults.record.map((image, i) => {
-      return <img src= {image} key={i}/>
+    const ImgComponent = this.state.discogsResults.record.map((record, i) => {
+      return <ApiResults key={i} record={record} />
       })
     return (
       <div>
