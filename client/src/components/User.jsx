@@ -97,8 +97,7 @@ class User extends Component {
     newState.updateUser = !newState.updateUser
     this.setState(newState)
   }
-  _handleDeleteCollection = (collectionId) => {
-    var password = prompt('You must enter your password to delete a collection')
+  _handleDeleteCollection = (password, collectionId) => {
     if (password === this.state.user.password) {
       axios.delete(`/api/user/${this.state.user.id}/collection/${collectionId}`)
         .then((res) => {
@@ -109,7 +108,7 @@ class User extends Component {
     } else {
       alert ('Incorrect password')
     }
-
+    console.log(collectionId + password)
   }
   _handleUpdateUser = () => {
     console.log('update user works')

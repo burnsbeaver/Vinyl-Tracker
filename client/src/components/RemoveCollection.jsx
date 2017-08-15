@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class RemoveCollection extends Component {
   _deleteCollection = () => {
-    this.props.deleteCollection(this.props.collection._id)
+    this.props.deleteCollection(this.props.password, this.props.collection._id)
   }
   render () {
     return(

@@ -2,13 +2,24 @@ import React, { Component } from 'react'
 import RemoveCollection from './RemoveCollection'
 
 class UpdateUser extends Component {
-  _handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.updateUser()
+  constructor() {
+    super();
+    this.state = {
+      password: ""
+    }
   }
+  _handleChange = (e) => {
+    const attributeValue = e.target.value
+    this.setState({password: attributeValue})
+  }
+  // _handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   this.props.updateUser(this.state.password)
+  //   this.setState({password: })
+  // }
   render () {
     const collectionscomponent =  this.props.user.collections.map((collection, i) => {
-      return <RemoveCollection key={i} collection={collection} deleteCollection={this.props.deleteCollection}/>
+      return <RemoveCollection key={i} password={this.state.password} collection={collection} deleteCollection={this.props.deleteCollection}/>
     })
     return (
       <div>
@@ -17,7 +28,8 @@ class UpdateUser extends Component {
             <input className="button" type="submit" value="Update Account" />
           </form>
         <h3>Delete Collection</h3>
-        <p>Please note: Once a collection is deleted, it cannot be restored.</p>
+        <p>Please note: Once a collection is deleted, it cannot be restored. <br/> Enter Password to Delete a Collection</p>
+        <input type="password" placeholder="Password" onChange={this._handleChange}/>
 
         {collectionscomponent}
 
