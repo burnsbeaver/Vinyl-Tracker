@@ -22,8 +22,8 @@ export const HeaderStyles = styled.div`
 `;
 
 export const HomePageForms = styled.div`
-  height: 240px;
-  width: 400px;
+  height: 270px;
+  width: 500px;
   display: flex;
   justify-content: space-around;
   background-color: rgba(0, 0, 0, 0.3);

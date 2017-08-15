@@ -30,6 +30,7 @@ class CreateUser extends Component {
     return(
       <div>
         <h3>Or, create an account</h3>
+        <h5>{this.props.createAccountError}</h5>
         <form onSubmit={this._handleCreateUser}>
           <input type="email" placeholder="email" onChange={this._handleChange} value={this.state.newUserInfo.email} name="email" required/>
           <br/>

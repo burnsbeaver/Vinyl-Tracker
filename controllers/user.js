@@ -56,9 +56,10 @@ router.post("/login", (req, res) => {
       if (userToSearch.password === userPassword) {
       res.json(userToSearch)
     } else {
-      res.send('Invalid Login Information')
+      res.send('Invalid Password')
     }
   })
+  .catch((err) => {res.send('Email is not linked to account')})
 });
 
 module.exports = router;

@@ -14,6 +14,9 @@ injectGlobal`
     font-family: Comic Sans MS;
     color: white;
     font-weight: 800;
+    a {
+      color: #6AC1A2;
+    }
   }
   button {
     -webkit-border-radius: 28;
@@ -26,6 +29,9 @@ injectGlobal`
     background: #6AC1A2;
     padding: 4px 8px 4px 8px;
     text-decoration: none;
+    &:hover {
+      background: #4ee0af;
+    }
   }
 `;
 
@@ -39,10 +45,10 @@ class App extends Component {
         firstName: '0',
         lastName: '0',
         password: '0',
-        collections: [0, 0, 0],
-        invalidLogin: "Enter Credentials below",
-        invalidCreateAccount: "Enter Credentials below"
-      }
+        collections: [0, 0, 0]
+      },
+      invalidLogin: "Enter Credentials below",
+      invalidCreateAccount: "Enter Credentials below"
     }
   }
 
@@ -61,7 +67,7 @@ class App extends Component {
           return true;
         } else {
           const newState = {...this.state}
-          newState.user.invalidLogin = res.data
+          newState.invalidLogin = res.data
           this.setState(newState)
           return false
         }
@@ -82,7 +88,7 @@ class App extends Component {
           return true;
         } else{
           const newState = {...this.state}
-          newState.user.invalidCreateAccount = res.data
+          newState.invalidCreateAccount = res.data
           this.setState(newState)
           return false
         }
@@ -105,7 +111,7 @@ class App extends Component {
   }
   render() {
     const HomeComponent = () => (
-      <Home loginError={this.state.invalidLogin} createUser={this._handleCreateUser} handleLogin={this._handleLogin} userId={this.state.user.id}/>
+      <Home loginError={this.state.invalidLogin} createAccountError={this.state.invalidCreateAccount} createUser={this._handleCreateUser} handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
 
     const UserComponent = () => (

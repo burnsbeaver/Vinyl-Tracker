@@ -42,7 +42,6 @@ class Home extends Component {
          this.setState({ loginInfo })
 }
   render () {
-    console.log(this.props.invalidLogin)
     if (this.state.redirect) {
       return <Redirect to={`/user/${this.props.userId}`} />;
     } else {
@@ -52,7 +51,7 @@ class Home extends Component {
         <HomePageForms>
           <div>
             <h3>Login</h3>
-            <div>{this.props.loginError}</div>
+            <h5>{this.props.loginError}</h5>
             <form onSubmit={this._loginSubmit}>
               <input type="email" value={this.state.loginInfo.email} name="email"
                 placeholder="email" onChange={this._handleChange} required/>
@@ -63,7 +62,7 @@ class Home extends Component {
               <input type="submit" value="Login" />
             </form>
           </div>
-          <CreateUser createUser={this._createUserMiddleMan} />
+          <CreateUser createAccountError={this.props.createAccountError} createUser={this._createUserMiddleMan} />
         </HomePageForms>
       </div>
     )
