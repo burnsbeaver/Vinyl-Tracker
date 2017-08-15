@@ -7,7 +7,7 @@ export const HeaderStyles = styled.div`
   margin: 0px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   img {
     height: 60px;
     width: 60px;

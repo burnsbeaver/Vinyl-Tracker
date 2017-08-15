@@ -26,7 +26,9 @@ class App extends Component {
         firstName: '0',
         lastName: '0',
         password: '0',
-        collections: [0, 0, 0]
+        collections: [0, 0, 0],
+        invalidLogin: "Enter Credentials below",
+        invalidCreateAccount: "Enter Credentials below"
       }
     }
   }
@@ -34,29 +36,43 @@ class App extends Component {
   _handleLogin = (email, password) => {
     return axios.post(`/api/user/login`, {email, password})
       .then((res) => {
-        const newState = {...this.state}
-        newState.user.id = res.data._id;
-        newState.user.email = res.data.email;
-        newState.user.firstName = res.data.firstName;
-        newState.user.lastName = res.data.lastName;
-        newState.user.password = res.data.password;
-        newState.user.collections = res.data.collections
-        this.setState(newState)
-        return true;
+        if(res.data.email){
+          const newState = {...this.state}
+          newState.user.id = res.data._id;
+          newState.user.email = res.data.email;
+          newState.user.firstName = res.data.firstName;
+          newState.user.lastName = res.data.lastName;
+          newState.user.password = res.data.password;
+          newState.user.collections = res.data.collections
+          this.setState(newState)
+          return true;
+        } else {
+          const newState = {...this.state}
+          newState.user.invalidLogin = res.data
+          this.setState(newState)
+          return false
+        }
       })
   }
   _handleCreateUser = (newUser) => {
     return axios.post(`/api/user/create`, newUser)
       .then((res) => {
-        const newState = {...this.state}
-        newState.user.id = res.data._id;
-        newState.user.email = res.data.email;
-        newState.user.firstName = res.data.firstName;
-        newState.user.lastName = res.data.lastName;
-        newState.user.password = res.data.password;
-        newState.user.collections = res.data.collections
-        this.setState(newState)
-        return true;
+        if(res.data.email){
+          const newState = {...this.state}
+          newState.user.id = res.data._id;
+          newState.user.email = res.data.email;
+          newState.user.firstName = res.data.firstName;
+          newState.user.lastName = res.data.lastName;
+          newState.user.password = res.data.password;
+          newState.user.collections = res.data.collections
+          this.setState(newState)
+          return true;
+        } else{
+          const newState = {...this.state}
+          newState.user.invalidCreateAccount = res.data
+          this.setState(newState)
+          return false
+        }
       })
   }
   _handleAddRecord = (newRecord, collectionId) => {
@@ -76,7 +92,7 @@ class App extends Component {
   }
   render() {
     const HomeComponent = () => (
-      <Home createUser={this._handleCreateUser} handleLogin={this._handleLogin} userId={this.state.user.id}/>
+      <Home loginError={this.state.invalidLogin} createUser={this._handleCreateUser} handleLogin={this._handleLogin} userId={this.state.user.id}/>
     )
 
     const UserComponent = () => (

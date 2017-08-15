@@ -18,20 +18,30 @@ router.get("/:id", (req,res) => {
 });
 
 router.post('/create', (req, res) => {
-  const newUser = new User();
-  newUser.email = req.body.email;
-  newUser.password = req.body.password;
-  newUser.firstName = req.body.firstName;
-  newUser.lastName = req.body.lastName;
-  const newCollection = new Collection
-  newCollection.name = "My Records";
-  newCollection.description = "Vinyl's that I own"
-  newCollection.records = []
-  newCollection.save()
-  newUser.collections = [newCollection];
-  newUser.save()
-  console.log(newUser)
-  res.json(newUser)
+  User.find()
+  .then((users) => {
+    const emailToSearch = users.find((user) => {
+      return user.email === req.body.email
+      })
+    if(emailToSearch) {
+      res.send('This email already has an account')
+    } else{
+        const newUser = new User();
+        newUser.email = req.body.email;
+        newUser.password = req.body.password;
+        newUser.firstName = req.body.firstName;
+        newUser.lastName = req.body.lastName;
+        const newCollection = new Collection
+        newCollection.name = "My Records";
+        newCollection.description = "Vinyl's that I own"
+        newCollection.records = []
+        newCollection.save()
+        newUser.collections = [newCollection];
+        newUser.save()
+        console.log(newUser)
+        res.json(newUser)
+      }
+  })
 })
 
 router.post("/login", (req, res) => {
@@ -43,7 +53,11 @@ router.post("/login", (req, res) => {
       const userToSearch = users.find((user ) => {
       return user.email === userEmail
     })
-    res.json(userToSearch)
+      if (userToSearch.password === userPassword) {
+      res.json(userToSearch)
+    } else {
+      res.send('Invalid Login Information')
+    }
   })
 });
 

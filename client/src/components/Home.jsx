@@ -42,6 +42,7 @@ class Home extends Component {
          this.setState({ loginInfo })
 }
   render () {
+    console.log(this.props.invalidLogin)
     if (this.state.redirect) {
       return <Redirect to={`/user/${this.props.userId}`} />;
     } else {
@@ -51,6 +52,7 @@ class Home extends Component {
         <HomePageForms>
           <div>
             <h3>Login</h3>
+            <div>{this.props.loginError}</div>
             <form onSubmit={this._loginSubmit}>
               <input type="email" value={this.state.loginInfo.email} name="email"
                 placeholder="email" onChange={this._handleChange} required/>
