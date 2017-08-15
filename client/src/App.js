@@ -8,7 +8,7 @@ import Home from "./components/Home";
 
 injectGlobal`
   body {
-    background-image: url('http://www.efurnituremart.com/images/PO/Jaipur-Rugs-Red-and-Orange-Solid-Pattern-Shag-Rug---VR02.jpg');
+    background-image: url('http://wallpapersin4k.net/wp-content/uploads/2016/12/Vinyl-Wallpapers-6.jpg');
     background-position: center;
     background-size: cover;
     font-family: Comic Sans MS;
