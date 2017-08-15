@@ -3,6 +3,7 @@ import axios from 'axios';
 import CollectionList from './CollectionList';
 import ShowCollection from './ShowCollection'
 import AddCollection from './AddCollection'
+import UpdateUser from './UpdateUser'
 
 class User extends Component {
   constructor() {
@@ -21,6 +22,7 @@ class User extends Component {
       },
       viewCollection: false,
       newCollection: false,
+      updateUser: false
     }
   }
   componentWillMount(){
@@ -89,6 +91,28 @@ class User extends Component {
         this.setState(newState)
       })
   }
+  _toggleViewUpdateUser = () => {
+    const newState = {...this.state}
+    newState.updateUser = !newState.updateUser
+    this.setState(newState)
+  }
+  _handleDeleteCollection = (collectionId) => {
+    var password = prompt('You must enter your password to delete a collection')
+    if (password === this.state.user.password) {
+      axios.delete(`/api/user/${this.state.user.id}/collection/${collectionId}`)
+        .then((res) => {
+          const newState = {...this.state}
+          newState.user.collections = res.data.collections
+          this.setState(newState)
+        })
+    } else {
+      alert ('Incorrect password')
+    }
+
+  }
+  _handleUpdateUser = () => {
+    console.log('update user works')
+  }
 
   render () {
     if(this.state.viewCollection) {
@@ -98,11 +122,16 @@ class User extends Component {
           <ShowCollection handleAddRecord={this._addRecordMiddleMan} user={this.state.user} collectionId={this.state.collection.id}/>
         </div>
         )
+    } else if (this.state.updateUser) {
+      return (
+        <UpdateUser user={this.state.user} deleteCollection={this._handleDeleteCollection} updateUser={this._handleUpdateUser} toggleUpdateUser={this._toggleViewUpdateUser}/>
+      )
     } else{
       if (this.state.newCollection) {
         return(
           <div>
             <h3>Hello, {this.state.user.firstName}</h3>
+            <button onClick={this._toggleViewUpdateUser}>Manage Account</button>
             <CollectionList handleViewCollection={this._handleViewCollection} user={this.state.user}/>
             <button onClick={this._toggleNewCollection}>Close Form</button>
             <AddCollection newCollection={this._handleNewCollection}/>
@@ -112,6 +141,7 @@ class User extends Component {
         return (
           <div>
             <h3>Hello, {this.state.user.firstName}</h3>
+            <button onClick={this._toggleViewUpdateUser}>Manage Account</button>
             <CollectionList handleViewCollection={this._handleViewCollection} user={this.state.user}/>
             <button onClick={this._toggleNewCollection}>Add Collection</button>
           </div>

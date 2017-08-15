@@ -50,7 +50,19 @@ router.post("/:id", (req, res) => {
 
       return user.save()
     })
-
 })
+
+router.delete("/:id", (req, res) => {
+  console.log('DELETE ROUTE HIT' + req.params.userId + req.params.id)
+  User.findById(req.params.userId)
+    .then((user) => {
+      const collectionToDelete = user.collections.findIndex((collection) => {
+        return collection.id === req.params.id
+      });
+      user.collections.splice(collectionToDelete, 1);
+      user.save();
+      res.json(user);
+    });
+});
 
 module.exports = router;
