@@ -72,10 +72,14 @@ class User extends Component {
 
   }
   _handleReturnToCollection = () => {
-    const newState = {...this.state}
-    newState.user.collections = this.props.collections
-    newState.viewCollection = false
-    this.setState(newState)
+    const id = this.props.userId
+    axios.get(`/api/user/${id}`)
+      .then((res) => {
+        const newState = {...this.state}
+        newState.user.collections = res.data.collections
+        newState.viewCollection = false
+        this.setState(newState)
+      })
   }
   _toggleNewCollection = () => {
     const newState = {...this.state}
@@ -108,7 +112,6 @@ class User extends Component {
     } else {
       alert ('Incorrect password')
     }
-    console.log(collectionId + password)
   }
   _handleUpdateUser = () => {
     console.log('update user works')
