@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios'
-import {HeaderStyles} from './styles/Main'
+import {HeaderStyles, BodyStyles} from './styles/Main'
 import { injectGlobal } from 'styled-components'
 import User from "./components/User";
 import Home from "./components/Home";
@@ -11,8 +11,21 @@ injectGlobal`
     background-image: url('http://www.efurnituremart.com/images/PO/Jaipur-Rugs-Red-and-Orange-Solid-Pattern-Shag-Rug---VR02.jpg');
     background-position: center;
     background-size: cover;
+    font-family: Comic Sans MS;
     color: white;
     font-weight: 800;
+  }
+  button {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 10px;
+    text-shadow: 0px 2px 7px #1a071a;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 10px;
+    background: #6AC1A2;
+    padding: 4px 8px 4px 8px;
+    text-decoration: none;
   }
 `;
 
@@ -102,14 +115,14 @@ class App extends Component {
       <Router>
         <div>
           <HeaderStyles>
-            <img src="http://dlp2gfjvaz867.cloudfront.net/product_photos/94461/gold_original.jpg" alt="" />
+            <img src="https://s-media-cache-ak0.pinimg.com/originals/02/e2/89/02e2899171aca0ab5d80e402749779fe.png" alt="" />
             <h1>Vinyl Tracker</h1>
             <Link to={`/`}>Logout</Link>
           </HeaderStyles>
-          <div>
+          <BodyStyles>
             <Route exact path="/" render={HomeComponent} />
             <Route exact path="/user/:userId" render={UserComponent} />
-          </div>
+          </BodyStyles>
         </div>
       </Router>
     );

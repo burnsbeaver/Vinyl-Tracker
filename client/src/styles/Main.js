@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const BodyStyles = styled.div`
+  padding: 25px;
+`;
+
 export const HeaderStyles = styled.div`
   height: 60px;
   background-color: black;
@@ -18,7 +22,7 @@ export const HeaderStyles = styled.div`
 `;
 
 export const HomePageForms = styled.div`
-  height: 200px;
+  height: 240px;
   width: 400px;
   display: flex;
   justify-content: space-around;
@@ -40,7 +44,8 @@ export const StyledRecord = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 5vh;
-  border: 4px solid black;
+  border: 12px solid black;
+  border-radius: 20px 70px 70px 20px;
   background-color: rgba(0, 0, 0, 0.7);
   img {
     height: 20vh;
