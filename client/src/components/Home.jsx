@@ -47,7 +47,7 @@ class Home extends Component {
     } else {
     return(
       <div>
-        <p><strong>Welcome to Vinyl Tracker, an app for keeping track of your Vinyl collections. With this application, you have the ability to track records you own, customize collections, and create a wishlist of albums you want.</strong></p>
+        <p><strong>Welcome to Vinyl Tracker, an app for keeping track of your Vinyl collections. With this application, you have the ability to track records you own, customize collections, and search from a database of records.</strong></p>
         <HomePageForms>
           <div>
             <h3>Login</h3>
@@ -59,7 +59,7 @@ class Home extends Component {
               <input type="password" value={this.state.loginInfo.password} name="password"
                 placeholder="password" onChange={this._handleChange} required/>
               <br/>
-              <input type="submit" value="Login" />
+              <input className="button" type="submit" value="Login" />
             </form>
           </div>
           <CreateUser createAccountError={this.props.createAccountError} createUser={this._createUserMiddleMan} />

@@ -34,7 +34,7 @@ render () {
               value={this.state.newCollection.name} name="name" placeholder="Collection Name" />
           <input type="text" onChange={this._handleChange}
               value={this.state.newCollection.description} name="description" placeholder="Description" />
-            <input type="submit" value="AddCollection" />
+            <input className="button" type="submit" value="AddCollection" />
         </form>
       </div>
     )

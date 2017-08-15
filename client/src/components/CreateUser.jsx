@@ -40,7 +40,7 @@ class CreateUser extends Component {
           <br/>
           <input type="password" placeholder="password" onChange={this._handleChange} value={this.state.newUserInfo.password} name="password" required/>
           <br/>
-          <input type="submit" value="Create Account" />
+          <input className="button" type="submit" value="Create Account" />
         </form>
       </div>
     )

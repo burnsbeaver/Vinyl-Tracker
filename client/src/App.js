@@ -18,7 +18,7 @@ injectGlobal`
       color: #6AC1A2;
     }
   }
-  button {
+  button, input.button {
     -webkit-border-radius: 28;
     -moz-border-radius: 28;
     border-radius: 10px;
@@ -47,8 +47,8 @@ class App extends Component {
         password: '0',
         collections: [0, 0, 0]
       },
-      invalidLogin: "Enter Credentials below",
-      invalidCreateAccount: "Enter Credentials below"
+      invalidLogin: "",
+      invalidCreateAccount: ""
     }
   }
 

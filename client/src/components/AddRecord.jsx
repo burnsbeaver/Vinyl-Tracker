@@ -44,7 +44,7 @@ render () {
                   value={this.state.newRecord.year} name="year" placeholder="Release Year" required/>
               <input type="text" onChange={this._handleChange}
                     value={this.state.newRecord.image} name="image" placeholder="URL to Record Image" required/>
-              <input type="submit" value="Add Record" />
+                  <input className="button" type="submit" value="Add Record" />
             </form>
           </div>
           <div>
