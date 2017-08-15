@@ -39,6 +39,7 @@ class SearchForRecord extends Component {
       })
     return (
       <div>
+        <h3>Search for record</h3>
         <form onSubmit={this._handleSearch}>
           <input type="text"  onChange={this._handleSearchChange}
               value={this.state.itemToSearch} name="itemToSearch" placeholder="Search for Record" required/>

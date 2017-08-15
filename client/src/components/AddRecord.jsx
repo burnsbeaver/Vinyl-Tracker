@@ -34,7 +34,7 @@ render () {
       <div>
         <h3>New Record</h3>
           <div>
-            <h3>Search for record</h3>
+            <h3>Manually add a record</h3>
             <form onSubmit={this._handleSubmit}>
               <input type="text"  onChange={this._handleChange}
                   value={this.state.newRecord.name} name="name" placeholder="Record Name" required/>
