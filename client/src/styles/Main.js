@@ -4,6 +4,18 @@ export const BodyStyles = styled.div`
   padding: 25px;
 `;
 
+export const Results = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 80vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .apiresult {
+    margin: 50px;
+  }
+`;
+
 export const HeaderStyles = styled.div`
   height: 60px;
   background-color: black;
@@ -17,7 +29,7 @@ export const HeaderStyles = styled.div`
     width: 60px;
   }
   a {
-    color: white
+    color: white;
   }
 `;
 

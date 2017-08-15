@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Results } from '../styles/Main';
 import ApiResults from './ApiResults'
 
 class SearchForRecord extends Component {
@@ -33,9 +34,9 @@ class SearchForRecord extends Component {
    }
 
   render () {
-    const ImgComponent = this.state.discogsResults.record.map((record, i) => {
+    const ImgComponent = this.state.discogsResults.record.reverse().slice(0, 10).map((record, i) => {
       return <ApiResults collection={this.props.collection} key={i} record={record} handleAddRecord={this.props.handleAddRecord} collectionId={this.props.collectionId}/>
-      }).reverse()
+      })
     return (
       <div>
         <form onSubmit={this._handleSearch}>
@@ -43,7 +44,9 @@ class SearchForRecord extends Component {
               value={this.state.itemToSearch} name="itemToSearch" placeholder="Search for Record" required/>
             <input className="button" type="submit" value="Search for record" />
         </form>
-        {ImgComponent}
+        <Results>
+          {ImgComponent}
+        </Results>
       </div>
     )
   }
