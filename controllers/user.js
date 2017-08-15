@@ -31,12 +31,13 @@ router.post('/create', (req, res) => {
         newUser.password = req.body.password;
         newUser.firstName = req.body.firstName;
         newUser.lastName = req.body.lastName;
+        newUser.collections = [];
         const newCollection = new Collection
         newCollection.name = "My Records";
         newCollection.description = "Vinyl's that I own"
         newCollection.records = []
         newCollection.save()
-        newUser.collections = [newCollection];
+        newUser.collections.push(newCollection);
         newUser.save()
         console.log(newUser)
         res.json(newUser)
