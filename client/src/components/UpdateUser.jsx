@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RemoveCollection from './RemoveCollection'
+import ShowAndEditUserInfo from './ShowAndEditUserInfo'
 
 class UpdateUser extends Component {
   constructor() {
@@ -24,9 +25,7 @@ class UpdateUser extends Component {
     return (
       <div>
         <h3>Update Account information, or delete collections</h3>
-          <form onSubmit={this._handleSubmit}>
-            <input className="button" type="submit" value="Update Account" />
-          </form>
+        <ShowAndEditUserInfo updateUser={this.props.updateUser} user={this.props.user}/>
         <h3>Delete Collection</h3>
         <p>Please note: Once a collection is deleted, it cannot be restored. <br/> Enter Password to Delete a Collection</p>
         <input type="password" placeholder="Password" onChange={this._handleChange}/>

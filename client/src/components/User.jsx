@@ -113,8 +113,8 @@ class User extends Component {
       alert ('Incorrect password')
     }
   }
-  _handleUpdateUser = () => {
-    console.log('update user works')
+  _handleUpdateUser = (newUserInfo) => {
+    return true
   }
 
   render () {
