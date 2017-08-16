@@ -29,7 +29,7 @@ class User extends Component {
       const id = this.props.userId
       axios.get(`/api/user/${id}`)
         .then((res) => {
-          console.log(res.data._id)
+          console.log(res.data)
           const newState = {...this.state}
           newState.user.id = res.data._id;
           newState.user.firstName = res.data.firstName;
