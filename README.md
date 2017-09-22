@@ -18,7 +18,7 @@ If you are at a bar and want to show someone your collection, you can't just sho
 * MERN Stack (MongoDB, ExpressJS, ReactJS, and NodeJS)
 
 ### Other
-* Trello? Trell NO!
+* Trello
 * Atom as text editor
 * Discogs API
 
