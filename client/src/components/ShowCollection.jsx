@@ -12,6 +12,7 @@ class ShowCollection extends Component {
         name: '',
         records: []
       },
+      search: "",
       searchByArtist: "",
       newRecord: false
     }
@@ -32,6 +33,13 @@ class ShowCollection extends Component {
     newState.newRecord = true
     this.setState(newState)
   }
+  _handleChange = (e) => {
+    const attributeValue = e.target.value
+    const attributeName = e.target.name
+    const newState = {...this.state}
+    newState[attributeName] = attributeValue
+    this.setState(newState)
+  }
 
   _handleDeleteRecord = (recordId) => {
     const id = recordId;
@@ -50,7 +58,12 @@ class ShowCollection extends Component {
     const collectionId = this.props.collectionId
     const recordState = this.state.collection.records;
     const recordcomponent = recordState.map((record, i) => {
-      return <Record key={i} deleteRecord={this._handleDeleteRecord} collectionId={collectionId} record={record}/>
+      return record
+    })
+    const searched = recordcomponent.map((result, i) => {
+      if (result.artist.toLowerCase().indexOf(this.state.search) !== -1 || result.name.toLowerCase().indexOf(this.state.search) !== -1) {
+        return <Record key={i} deleteRecord={this._handleDeleteRecord} collectionId={collectionId} record={result}/>
+      }
     })
 
     if (this.state.newRecord) {
@@ -63,8 +76,11 @@ class ShowCollection extends Component {
           <h2>{this.state.collection.name}</h2>
           <h4>{this.state.collection.records.length} Records</h4>
           <button onClick={this._handleAddNewRecord}>Add New Record</button>
+          <form>
+              <input type="text" name="search" placeholder="Search by Name, Artist, or Year!" onChange={this._handleChange} />
+          </form>
           <ul>
-            {recordcomponent}
+            {searched}
           </ul>
         </div>
       )
